@@ -4,8 +4,9 @@
 # https://aka.ms/yaml
 variables:
   InjectAlmOctaneTasks: 'true'
-  OctaneConnectionName: 'almoctane'
-  WorkspaceList: '1003'
+  AlmOctaneConnection11: 'almoctane'
+  AlmOctaneConnection11Workspaces: '1003'
+  AlmOctaneLogLevel: 'debug'
 
 jobs:
 - job: AlmOctanePipelineStart

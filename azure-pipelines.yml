@@ -3,30 +3,25 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 variables:
-            InjectAlmOctaneTasks: 'true'
-            OctaneConnectionName: 'almoctane'
-trigger:
-- master
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-steps:
-- task: octane-start-task@1
-  inputs:
-    OctaneServiceConnection: 'almoctane'
-    WorkspaceList: '1003'
-    GithubRepositoryConnection: 'git'
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-  
-- task: octane-end-task@1
-  inputs:
-    OctaneServiceConnection: 'almoctane'
-    WorkspaceList: '1003'
-    GithubRepositoryConnection: 'git'
+  InjectAlmOctaneTasks: 'true'
+  OctaneConnectionName: 'almoctane'
+  WorkspaceList: '1003'
+jobs:
+- job: AlmOctanePipelineStart
+  condition: always()
+- job: A
+  dependsOn: AlmOctanePipelineStart
+  steps:
+  - bash: echo "A"
+- job: C
+  dependsOn: AlmOctanePipelineStart
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - bash: echo "A"
+- job: AlmOctanePipelineEnd
+  condition: always()
+  dependsOn:
+  - AlmOctanePipelineStart
+  - A
+  - C

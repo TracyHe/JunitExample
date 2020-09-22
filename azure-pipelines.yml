@@ -10,7 +10,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-
+- task: octane-connection-verifier@1
+  inputs:
+    OctaneServiceConnection: 'almoctane'
 
 - task: octane-start-task@1
   inputs:

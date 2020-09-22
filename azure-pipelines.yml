@@ -6,19 +6,23 @@ variables:
   InjectAlmOctaneTasks: 'true'
   OctaneConnectionName: 'almoctane'
   WorkspaceList: '1003'
+
 jobs:
 - job: AlmOctanePipelineStart
   condition: always()
+  
 - job: A
   dependsOn: AlmOctanePipelineStart
   steps:
   - bash: echo "A"
+
 - job: C
   dependsOn: AlmOctanePipelineStart
   pool:
     vmImage: 'ubuntu-latest'
   steps:
   - bash: echo "A"
+  
 - job: AlmOctanePipelineEnd
   condition: always()
   dependsOn:

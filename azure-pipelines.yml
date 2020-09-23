@@ -18,7 +18,7 @@ jobs:
   steps:
   - bash: echo "A"
 
-- job: B
+- job: C
   dependsOn: AlmOctanePipelineStart
   pool:
     vmImage: 'ubuntu-latest'
@@ -33,18 +33,10 @@ jobs:
       publishJUnitResults: true
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
       goals: 'test'
-
-- job: C
-  dependsOn: AlmOctanePipelineStart
-  pool:
-    vmImage: 'ubuntu-latest'
-  steps:
-  - bash: echo "A"
   
 - job: AlmOctanePipelineEnd
   condition: always()
   dependsOn:
   - AlmOctanePipelineStart
   - A
-  - B
   - C

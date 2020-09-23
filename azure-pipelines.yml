@@ -18,6 +18,22 @@ jobs:
   steps:
   - bash: echo "A"
 
+- job: B
+  dependsOn: AlmOctanePipelineStart
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'pom.xml'
+      mavenOptions: '-Xmx3072m'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.8'
+      jdkArchitectureOption: 'x64'
+      publishJUnitResults: true
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      goals: 'test'
+
 - job: C
   dependsOn: AlmOctanePipelineStart
   pool:
@@ -30,4 +46,5 @@ jobs:
   dependsOn:
   - AlmOctanePipelineStart
   - A
+  - B
   - C

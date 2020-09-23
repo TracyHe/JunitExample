@@ -13,12 +13,12 @@ jobs:
 - job: AlmOctanePipelineStart
   condition: always()
   
-- job: A
+- job: BUILD
   dependsOn: AlmOctanePipelineStart
   steps:
-  - bash: echo "A"
+  - bash: echo "BUILD"
 
-- job: C
+- job: TEST
   dependsOn: AlmOctanePipelineStart
   pool:
     vmImage: 'ubuntu-latest'
@@ -38,5 +38,5 @@ jobs:
   condition: always()
   dependsOn:
   - AlmOctanePipelineStart
-  - A
-  - C
+  - BUILD
+  - TEST

@@ -7,7 +7,7 @@ variables:
   AlmOctaneConnection11: 'almoctane'
   AlmOctaneConnection11Workspaces: '1003'
   AlmOctaneLogLevel: 'debug'
-  GithubRepositoryConnection: 'git'
+  GithubRepositoryConnection: 'TracyHe'
 
 jobs:
 - job: AlmOctanePipelineStart
